@@ -1,0 +1,8 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      target: node_development
+    environment:
+      - EXEC_ENV=development
