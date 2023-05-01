@@ -39,6 +39,7 @@ export class OpenAiApiService {
           model: 'text-davinci-003',
           prompt: this.generatePrompt(createPostDto),
           max_tokens: 3000,
+          temperature: 0,
         },
         {
           timeout: 100000,
