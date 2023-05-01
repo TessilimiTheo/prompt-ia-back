@@ -1,0 +1,20 @@
+import { Body, Controller, Post } from '@nestjs/common';
+
+import { CustomerService } from './customer.service';
+import { ConnectCustomerDto } from './dto/connect-user.dto';
+
+@Controller('customer')
+export class CustomerController {
+  constructor(private readonly customerService: CustomerService) {}
+
+  @Post()
+  async connectUser(@Body() connectCustomerDto: ConnectCustomerDto) {
+    const result = await this.customerService.findOneByEmail(
+      connectCustomerDto.email,
+    );
+    if (result == null) {
+      return await this.customerService.create(connectCustomerDto);
+    }
+    return result;
+  }
+}

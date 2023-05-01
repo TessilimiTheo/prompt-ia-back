@@ -22,10 +22,10 @@ export class OpenAiApiService {
       ? 'contenant les hashtags ' + createPostDto.hashtag.toString()
       : undefined;
 
-    return `Génère un poste de résaux sociaux sur le thème du ${
+    return `Génère un poste de réseaux sociaux sur le thème du ${
       createPostDto.theme
     } ${isArticle}, le texte doit être de ${
-      createPostDto.contentLenght
+      createPostDto.contentLength
     } caractères maximum sur un ton ${createPostDto.tonality} ${
       hashtag ?? ''
     }.`;

@@ -6,11 +6,15 @@ export class CreatePostDto {
   readonly theme: string;
   @IsNumber()
   @IsNotEmpty()
-  readonly contentLenght: number;
+  readonly contentLength: number;
   @IsString()
   @IsNotEmpty()
   readonly tonality: string;
   @IsArray()
   readonly hashtag: Array<string>;
+  @IsNotEmpty()
   readonly isArticle: boolean;
+  @IsNotEmpty()
+  readonly user: string;
+  readonly label: string;
 }
