@@ -20,9 +20,11 @@ export class OpenAiApiController {
   ) {}
   @Post()
   async createPost(@Body() createPostDto: CreatePostDto) {
-    return this.openApiService.GeneratePost(createPostDto).then((data) => {
-      this.requestPromptService.SavePrompt(createPostDto);
-      return data;
-    });
+    return this.openApiService
+      .GeneratePost(createPostDto)
+      .then((data: string) => {
+        this.requestPromptService.SavePrompt(createPostDto, data);
+        return data;
+      });
   }
 }

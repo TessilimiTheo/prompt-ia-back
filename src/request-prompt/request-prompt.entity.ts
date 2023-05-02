@@ -13,6 +13,9 @@ export class RequestPrompt {
   @Column({ type: 'jsonb' })
   options: string;
 
+  @Column()
+  result: string;
+
   @ManyToOne(() => Customer)
   customer: Customer;
 }

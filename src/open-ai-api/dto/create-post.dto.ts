@@ -11,7 +11,7 @@ export class CreatePostDto {
   @IsNotEmpty()
   readonly tonality: string;
   @IsArray()
-  readonly hashtag: Array<string>;
+  readonly hashtags: Array<string>;
   @IsNotEmpty()
   readonly isArticle: boolean;
   @IsNotEmpty()

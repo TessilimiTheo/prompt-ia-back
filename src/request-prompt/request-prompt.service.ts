@@ -14,11 +14,12 @@ export class RequestPromptService {
     @InjectRepository(RequestPrompt)
     private RequestPromptRepository: Repository<RequestPrompt>,
   ) {}
-  async SavePrompt(createPostDto: CreatePostDto) {
+  async SavePrompt(createPostDto: CreatePostDto, result: string) {
     const { user, label, ...options } = createPostDto;
     this.customerService.findOneById(user).then(async (customer) => {
       if (customer) {
         await this.RequestPromptRepository.save({
+          result,
           customer: customer,
           label,
           options: JSON.stringify(options),
@@ -33,7 +34,7 @@ export class RequestPromptService {
       loadRelationIds: true,
       where: { customer: { id: id } },
       order: { id: 'DESC' },
-      take: 10,
+      take: 7,
     });
   }
 }

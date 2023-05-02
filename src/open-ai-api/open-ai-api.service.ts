@@ -15,19 +15,19 @@ export class OpenAiApiService {
 
   private generatePrompt(createPostDto: CreatePostDto): string {
     const isArticle: string = createPostDto.isArticle
-      ? 'ce post sera lié a un article'
+      ? 'ce post sera lié à un article'
       : 'ce post ne sera pas lié à un article';
 
-    const hashtag: string | undefined = createPostDto.hashtag
-      ? 'contenant les hashtags ' + createPostDto.hashtag.toString()
-      : undefined;
+    const hashtags: string = createPostDto.hashtags
+      ? 'contenant les hashtagss ' + createPostDto.hashtags.toString()
+      : '';
 
     return `Génère un poste de réseaux sociaux sur le thème du ${
       createPostDto.theme
     } ${isArticle}, le texte doit être de ${
       createPostDto.contentLength
     } caractères maximum sur un ton ${createPostDto.tonality} ${
-      hashtag ?? ''
+      hashtags ?? ''
     }.`;
   }
 
