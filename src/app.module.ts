@@ -1,3 +1,5 @@
+import * as process from 'process';
+
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -16,11 +18,20 @@ import { RequestPromptModule } from './request-prompt/request-prompt.module';
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'db',
-      port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'prompt-ia',
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+      ssl: process.env.ENV === 'production',
+      extra:
+        process.env.ENV === 'production'
+          ? {
+              ssl: {
+                rejectUnauthorized: false,
+              },
+            }
+          : {},
       entities: [Customer, RequestPrompt],
       synchronize: true,
     }),
