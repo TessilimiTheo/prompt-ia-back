@@ -4,8 +4,6 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { Customer } from './customer/customer.entity';
 import { CustomerModule } from './customer/customer.module';
 import { OpenAiApiModule } from './open-ai-api/open-ai-api.module';
@@ -15,7 +13,7 @@ import { RequestPromptModule } from './request-prompt/request-prompt.module';
 @Module({
   imports: [
     OpenAiApiModule,
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({ envFilePath: ['.env', '.env.dist'] }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
@@ -38,7 +36,7 @@ import { RequestPromptModule } from './request-prompt/request-prompt.module';
     CustomerModule,
     RequestPromptModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

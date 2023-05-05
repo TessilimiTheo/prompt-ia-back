@@ -1,9 +1,16 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 
 import { CustomerService } from './customer.service';
 import { ConnectCustomerDto } from './dto/connect-user.dto';
 
 @Controller('customer')
+@UsePipes(new ValidationPipe())
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
 
@@ -13,7 +20,7 @@ export class CustomerController {
       connectCustomerDto.email,
     );
     if (result == null) {
-      return await this.customerService.create(connectCustomerDto);
+      return await this.customerService.createUser(connectCustomerDto);
     }
     return result;
   }

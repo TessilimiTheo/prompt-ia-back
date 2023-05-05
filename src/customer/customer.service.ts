@@ -13,14 +13,14 @@ export class CustomerService {
   ) {}
 
   public async findOneByEmail(email: string) {
-    return await this.customerRepository.findOne({ where: { email: email } });
+    return await this.customerRepository.findOne({ where: { email } });
   }
 
-  async create(connectCustomerDto: ConnectCustomerDto) {
+  async createUser(connectCustomerDto: ConnectCustomerDto) {
     return await this.customerRepository.save(connectCustomerDto);
   }
 
   async findOneById(id: string) {
-    return await this.customerRepository.findOneBy({ id: id });
+    return await this.customerRepository.findOneBy({ id });
   }
 }

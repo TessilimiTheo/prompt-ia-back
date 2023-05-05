@@ -34,7 +34,7 @@ export class RequestPromptService {
       loadRelationIds: true,
       where: { customer: { id: id } },
       order: { id: 'DESC' },
-      take: 7,
+      take: 10,
     });
   }
 }

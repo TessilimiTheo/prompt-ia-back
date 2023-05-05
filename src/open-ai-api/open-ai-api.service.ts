@@ -19,7 +19,7 @@ export class OpenAiApiService {
       : 'ce post ne sera pas lié à un article';
 
     const hashtags: string = createPostDto.hashtags
-      ? 'contenant les hashtagss ' + createPostDto.hashtags.toString()
+      ? 'contenant les hashtags ' + createPostDto.hashtags.toString()
       : '';
 
     return `Génère un poste de réseaux sociaux sur le thème du ${
